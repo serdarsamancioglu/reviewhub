@@ -6,4 +6,5 @@
     <string name="platform">Platform:</string>
     <string name="country">Country:</string>
     <string name="location">Location:</string>
+    <string name="clear">Clear</string>
 </resources>

@@ -1,8 +1,8 @@
 package com.serdar.reviewhub.review
 
 import android.content.Intent
+import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.gson.Gson
 import com.serdar.reviewapp.IViewState
 import com.serdar.reviewapp.ReviewState
 import com.serdar.reviewapp.ReviewViewModel
@@ -10,9 +10,19 @@ import com.serdar.reviewapp.base.BaseActivity
 import com.serdar.reviewhub.MapsActivity
 import com.serdar.reviewhub.R
 import com.serdar.reviewhub.databinding.ActivityReviewsBinding
+import com.serdar.reviewhub.entity.ReviewItem
 import com.serdar.reviewhub.entity.ReviewItems
 
 class ReviewActivity: BaseActivity<ReviewViewModel, ActivityReviewsBinding>() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding.filterBar.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
+            viewModel.filterByRating(rating.toInt())
+        }
+
+        binding.btnClear.setOnClickListener { viewModel.clear() }
+    }
 
     override fun getLayoutId(): Int {
         return R.layout.activity_reviews
@@ -27,14 +37,16 @@ class ReviewActivity: BaseActivity<ReviewViewModel, ActivityReviewsBinding>() {
             is ReviewState.ReadFromFile -> {
                 viewModel.readFile(state.fName, assets)
             }
-            is ReviewState.FileRead -> {
-                listItems(state.data)
+            is ReviewState.ListReviews -> {
+                listItems(state.items)
+            }
+            is ReviewState.ClearFilter -> {
+                binding.filterBar.rating = 0f
             }
         }
     }
 
-    private fun listItems(data: String) {
-        var items = Gson().fromJson<ReviewItems>(data, ReviewItems::class.java)
+    private fun listItems(items: List<ReviewItem>) {
         val listener = object: ItemClickListener {
             override fun onItemClicked(lat: Double, long: Double) {
                 showMap(lat, long)

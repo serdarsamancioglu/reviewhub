@@ -9,13 +9,13 @@ import com.serdar.reviewhub.entity.ReviewItem
 import com.serdar.reviewhub.entity.ReviewItems
 import java.lang.StringBuilder
 
-class ReviewAdapter(private val reviewItems: ReviewItems, private val listener: ItemClickListener)
+class ReviewAdapter(private val reviewItems: List<ReviewItem>, private val listener: ItemClickListener)
     : RecyclerView.Adapter<ReviewAdapter.ReviewVH>() {
 
-    override fun getItemCount(): Int = reviewItems.items.size
+    override fun getItemCount(): Int = reviewItems.size
 
     override fun onBindViewHolder(holder: ReviewVH, position: Int) {
-        holder.bind(reviewItems.items[position], listener)
+        holder.bind(reviewItems[position], listener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewVH {
