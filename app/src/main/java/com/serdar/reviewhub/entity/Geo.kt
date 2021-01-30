@@ -1,8 +1,8 @@
-package com.serdar.reviewapp.entity
+package com.serdar.reviewhub.entity
 
 class Geo {
-    lateinit var country: String
-    lateinit var city: String
+    var country: String? = null
+    var city: String? = null
     var lat: Double? = null
     var lon: Double? = null
 }

@@ -1,13 +1,14 @@
-package com.serdar.reviewapp.entity
+package com.serdar.reviewhub.entity
 
 import com.google.gson.annotations.SerializedName
 
 class ReviewItem {
     @SerializedName("computed_browser")
-    lateinit var computedBrowser: ComputedBrowser
+    var computedBrowser: ComputedBrowser? = null
     @SerializedName("computed_location")
-    lateinit var computedLocation: String
-    lateinit var geo: Geo
-    lateinit var labels: List<String>
+    var computedLocation: String? = null
+    var geo: Geo? = null
+    var labels: List<String>? = null
     var rating: Int? = 0
+    var comment: String? = null
 }

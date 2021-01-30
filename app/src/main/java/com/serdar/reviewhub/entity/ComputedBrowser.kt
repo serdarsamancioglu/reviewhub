@@ -1,14 +1,14 @@
-package com.serdar.reviewapp.entity
+package com.serdar.reviewhub.entity
 
 import com.google.gson.annotations.SerializedName
 
 class ComputedBrowser {
     @SerializedName("Browser")
-    lateinit var browser: String
+    var browser: String? = null
     @SerializedName("Version")
-    lateinit var version: String
+    var version: String? = null
     @SerializedName("Platform")
-    lateinit var platform: String
+    var platform: String? = null
     @SerializedName("FullBrowser")
-    lateinit var fullBrowser: String
+    var fullBrowser: String? = null
 }

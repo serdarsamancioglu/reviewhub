@@ -3,18 +3,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mci_item_recyclerview"
+        android:id="@+id/reviewRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="5dp"
+        android:scrollbars="vertical"
         android:layout_weight="1"
         android:scrollbarFadeDuration="0"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

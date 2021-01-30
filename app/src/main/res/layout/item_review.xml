@@ -1,168 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+<layout>
+    <data>
+        <variable
+            name="reviewItem"
+            type="com.serdar.reviewhub.entity.ReviewItem" />
+        <import type="android.view.View" />
+    </data>
 
-    <androidx.cardview.widget.CardView
-        xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card_view"
-        card_view:layout_constraintStart_toStartOf="parent"
-        card_view:layout_constraintEnd_toEndOf="parent"
-        card_view:layout_constraintTop_toTopOf="parent"
-        android:layout_gravity="center"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            style="@style/CardView.Light"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:cardBackgroundColor="@color/light_background">
 
-            <RatingBar
-                android:id="@+id/ratingBar"
-                card_view:layout_constraintTop_toTopOf="parent"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                android:layout_margin="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:max="5"
-                android:numStars="5"
-                android:rating="0.0"
-                tools:rating="3"
-                android:isIndicator="true"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tv_labels"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="italic"
-                card_view:layout_constraintTop_toBottomOf="@+id/ratingBar"
-                card_view:layout_constraintEnd_toEndOf="@id/ratingBar"
-                tools:text="compliment"
-                android:textSize="15sp"/>
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:isIndicator="true"
+                    android:max="5"
+                    android:numStars="5"
+                    android:rating="@{reviewItem.rating}"
+                    android:theme="@style/RatingBar"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent"
+                    tools:rating="3" />
 
-            <TextView
-                android:id="@+id/tv_comment"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                card_view:layout_constraintTop_toBottomOf="@+id/tv_labels"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintBottom_toTopOf="@+id/tv_browser"
-                android:minLines="3"
-                android:maxLines="3"
-                android:gravity="center_vertical"
-                tools:text="@string/lorem_ipsum"
-                android:layout_marginEnd="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:ellipsize="end"
-                android:textSize="20sp"/>
+                <TextView
+                    android:id="@+id/tv_labels"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:textSize="15sp"
+                    android:textStyle="italic"
+                    card_view:layout_constraintEnd_toStartOf="@id/ratingBar"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toTopOf="@id/ratingBar"
+                    tools:text="compliment" />
 
-            <TextView
-                android:id="@+id/tv_browser"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                card_view:layout_constraintBottom_toTopOf="@id/tv_country"
-                card_view:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="5dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:text="@string/browser"/>
+                <TextView
+                    android:id="@+id/tv_comment"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical|start"
+                    android:text="@{reviewItem.comment}"
+                    android:textSize="16sp"
+                    card_view:layout_constraintBottom_toTopOf="@+id/tv_browser"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toBottomOf="@+id/tv_country_name"
+                    tools:text="@string/lorem_ipsum" />
 
-            <TextView
-                android:id="@+id/tv_browser_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                card_view:layout_constraintBottom_toBottomOf="@id/tv_browser"
-                card_view:layout_constraintStart_toEndOf="@id/tv_browser"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:textSize="15sp"
-                tools:text="Mozilla"/>
+                <TextView
+                    android:id="@+id/tv_browser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="@string/browser"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_browser_version"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                card_view:layout_constraintBottom_toBottomOf="@id/tv_browser"
-                card_view:layout_constraintStart_toEndOf="@id/tv_browser_name"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:textSize="15sp"
-                tools:text="32.0"/>
+                <TextView
+                    android:id="@+id/tv_browser_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@{reviewItem.computedBrowser.browser}"
+                    android:textSize="12sp"
+                    card_view:layout_constraintBottom_toBottomOf="@id/tv_browser"
+                    card_view:layout_constraintStart_toEndOf="@id/tv_browser"
+                    tools:text="Mozilla" />
 
-            <TextView
-                android:id="@+id/tv_platform"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                card_view:layout_constraintBottom_toTopOf="@id/tv_country"
-                card_view:layout_constraintEnd_toStartOf="@id/tv_platform_name"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:text="@string/platform"/>
+                <TextView
+                    android:id="@+id/tv_browser_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="@{reviewItem.computedBrowser.version}"
+                    android:textSize="12sp"
+                    card_view:layout_constraintBottom_toBottomOf="@id/tv_browser"
+                    card_view:layout_constraintStart_toEndOf="@id/tv_browser_name"
+                    tools:text="32.0" />
 
-            <TextView
-                android:id="@+id/tv_platform_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                card_view:layout_constraintBottom_toBottomOf="@id/tv_platform"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="15sp"
-                tools:text="MacOSX"/>
+                <TextView
+                    android:id="@+id/tv_platform"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="@string/platform"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    card_view:layout_constraintBottom_toBottomOf="@id/tv_browser"
+                    card_view:layout_constraintEnd_toStartOf="@id/tv_platform_name" />
 
-            <TextView
-                android:id="@+id/tv_country"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                android:text="@string/location"
-                android:textStyle="bold"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
-                android:textSize="15sp"/>
+                <TextView
+                    android:id="@+id/tv_platform_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="@{reviewItem.computedBrowser.platform}"
+                    android:textSize="12sp"
+                    card_view:layout_constraintBottom_toBottomOf="@id/tv_platform"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    tools:text="MacOSX" />
 
-            <TextView
-                android:id="@+id/tv_country_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintStart_toEndOf="@id/tv_country"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                tools:text="France" />
+                <TextView
+                    android:id="@+id/tv_country_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{reviewItem.computedLocation}"
+                    android:layout_marginTop="12dp"
+                    tools:text="France"
+                    android:textSize="12sp"
+                    card_view:layout_constraintTop_toBottomOf="@id/ratingBar"
+                    card_view:layout_constraintEnd_toStartOf="@id/tv_comma" />
 
-            <TextView
-                android:id="@+id/tv_comma"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintStart_toEndOf="@id/tv_country_name"
-                tools:text="," />
+                <ImageView
+                    android:id="@+id/marker"
+                    android:layout_width="30dp"
+                    android:padding="5dp"
+                    android:layout_height="wrap_content"
+                    card_view:layout_constraintEnd_toStartOf="@id/tv_country_name"
+                    card_view:layout_constraintTop_toTopOf="@id/tv_country_name"
+                    card_view:layout_constraintBottom_toBottomOf="@id/tv_country_name"
+                    android:src="@drawable/pin"
+                    android:adjustViewBounds="true"/>
 
-            <TextView
-                android:id="@+id/tv_city_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                card_view:layout_constraintBottom_toBottomOf="parent"
-                card_view:layout_constraintStart_toEndOf="@id/tv_comma"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                tools:text="Paris" />
+                <TextView
+                    android:id="@+id/tv_comma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{reviewItem.geo.city != null ? View.VISIBLE : View.GONE}"
+                    card_view:layout_constraintBottom_toBottomOf="@id/tv_country_name"
+                    card_view:layout_constraintEnd_toStartOf="@id/tv_city_name"
+                    android:text="," />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tv_city_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:textSize="12sp"
+                    android:text="@{reviewItem.geo.city}"
+                    card_view:layout_constraintBottom_toBottomOf="@id/tv_country_name"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    tools:text="Paris" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
