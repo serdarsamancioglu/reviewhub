@@ -30,6 +30,7 @@ class SplashActivity: BaseActivity<SplashViewModel, ActivitySplashBinding>() {
             is SplashState.Finish -> {
                 val intent = Intent(this, ReviewActivity::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }
